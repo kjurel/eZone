@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@libs/*": ["src/libs/*"],
+      "@api/*": ["src/pages/api/*"],
       "@schemas/*": ["src/schemas/*"]
     }
   }
