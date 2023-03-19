@@ -3,15 +3,27 @@ import BaseLayout from "@components/BaseLayout.astro";
 import Navbar from "@components/Navbar.astro";
 ---
 
-<html>
-  <Navbar />
+<BaseLayout title="eZone">
   <div class="flex w-screen">
-    <div class="bg-blue-500 h-remainfull w-1/2 relative left-0">
-      <BaseLayout title="eZone">MAP</BaseLayout>
-    </div>
+    <div id="map" class="bg-blue-500 h-remainfull w-1/2 relative left-0"></div>
     <div class="relative right-0 h-remainfull w-1/2">
       <div class="bg-yellow-500 h-remain">AQI</div>
       <div class="bg-red-500 h-remain">VEGITATION</div>
     </div>
   </div>
-</html>
+</BaseLayout>
+
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""
+></script>
+<script>
+  const map = L.map("map").setView([51.505, -0.09], 13);
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+</script>
