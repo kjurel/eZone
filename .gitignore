@@ -1,3 +1,5 @@
+.env.local
+
 ##AStro
 # build output
 dist/
