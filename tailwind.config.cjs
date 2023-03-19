@@ -9,6 +9,10 @@ module.exports = {
 			  height: {
 				'remain': '46.5vh',
 				'remainfull': '93vh'
+			  },
+			  width: {
+				'remain': '83vw',
+				'remain1': '17vw'
 			  }
 		},
 	},
