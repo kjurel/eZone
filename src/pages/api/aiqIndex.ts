@@ -13,8 +13,8 @@ export const get: APIRoute = async ({ request, params }) => {
 
   fetch(
     URLSearchParams,
-    "https://api.openaq.org/v2/latest/860?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false",
-    FetchOptions
+    "https://api.openaq.org/v2/latest/860?limit=100&page=1&offset=0&sort=desc&radius=1000&order_by=lastUpdated&dumpRaw=false"
+    // FetchOptions
   )
     .then((response) => response.json())
     .then((response) => console.log(response))

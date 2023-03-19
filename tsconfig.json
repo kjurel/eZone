@@ -4,8 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@api/*": ["src/pages/api/*"],
-      "@schemas/*": ["src/schemas/*"]
+      "@api/*": ["src/components/pages/api/*"],
+      "@schemas/*": ["src/schemas/*"],
+      "@utilities/*": ["src/utilities/*"]
     },
     "plugins": [
       {

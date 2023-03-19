@@ -1,0 +1,52 @@
+---
+---
+
+<div class="input-group">
+  <input type="text" id="searchBox" class="form-control me-2" />
+  <button type="button" id="searchBtn" class="btn me-2 btn-outline-secondary"
+    >Search</button
+  >
+  <button
+    type="button"
+    class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul id="cityselec" class="dropdown-menu dropdown-menu-end pe-4">
+    <!-- <li><hr class="dropdown-divider" /></li> -->
+  </ul>
+</div>
+<!-- </form> -->
+<script>
+  import { getLocationAq } from "@utilities/OpenAq";
+  import { Location } from "@utilities/store";
+  document.querySelector("button#searchBtn")?.addEventListener("click", () => {
+    const str = (document.querySelector("input#searchBox") as HTMLInputElement)
+      .value;
+    getLocationAq(str.charAt(0).toUpperCase() + str.slice(1)).then(
+      (response) => {
+        if (response != null) {
+          response.results.forEach((value) => {
+            const listE = document.createElement("li");
+            const aE = document.createElement("a");
+            aE.classList.add("dropdown-item");
+            aE.href = "#";
+            if (
+              value.coordinates.latitude == null ||
+              value.coordinates.longitude == null
+            ) {
+              aE.innerHTML = `[!] ${value.city}, ${value.name}`;
+            } else {
+              aE.innerHTML = `${value.city}, ${value.name}`;
+            }
+            aE.addEventListener("click", (ev) => Location.set(value));
+            listE.appendChild(aE);
+            document.querySelector("ul#cityselec")?.appendChild(listE);
+          });
+        }
+      }
+    );
+  });
+</script>

@@ -1,0 +1,80 @@
+---
+import type { HTMLAttributes } from "astro/types";
+export interface Props extends HTMLAttributes<"div"> {}
+---
+
+<div id="map" style="height: 94vh"></div>
+<!-- <div id="map" class="bg-blue-500 h-remainfull w-remain relative left-0"></div> -->
+<div class="images"></div>
+<link
+  is:raw
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  crossorigin=""
+/>
+<script
+  is:inline
+  src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+  crossorigin=""
+></script>
+<script
+  is:inline
+  src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-image/v0.0.4/leaflet-image.js"
+></script>
+<script>
+  import { Location } from "@utilities/store";
+  //@ts-ignore
+  const LL = L;
+
+  // import L from "leaflet";
+
+  // L.map();
+
+  const osmMap = LL.tileLayer(
+    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      maxZoom: 18,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }
+  );
+  const arcMap = LL.tileLayer(
+    "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution:
+        '&copy; <a href="http://www.esri.com/">Esri</a>, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      maxZoom: 18,
+    }
+  );
+  const map = LL.map("map", { layers: [osmMap] }).setView([51.505, -0.09], 13);
+  // LL.control.layers({ OSM: osmMap, ARC: arcMap }).addTo(map);
+  LL.canvas();
+  Location.listen((value) => {
+    if (
+      value.coordinates.latitude != null &&
+      value.coordinates.longitude != null
+    ) {
+      map.panTo({
+        lat: value.coordinates.latitude,
+        lng: value.coordinates.longitude,
+      });
+    }
+    leafletImage(map, function (err: Error, canvas: HTMLCanvasElement) {
+      // now you have canvas
+      // example thing to do with that canvas:
+      var img = document.createElement("img");
+      var dimensions = map.getSize();
+      img.width = dimensions.x;
+      img.height = dimensions.y;
+      const ctx = canvas.getContext("2d");
+      console.log(
+        ctx?.createImageData(dimensions.x, dimensions.y)?.data?.length
+      );
+      // img.src = canvas.toDataURL();
+      // document.getElementById("images").innerHTML = "";
+      // document.getElementById("images").appendChild(img);
+    });
+  });
+</script>
