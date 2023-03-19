@@ -2,11 +2,16 @@
 import BaseLayout from "@components/BaseLayout.astro";
 import Navbar from "@components/Navbar.astro";
 ---
+
 <html>
-  <Navbar></Navbar>
-  <div class="bg-blue-500">
-<BaseLayout title="eZone">
-  <h1>This is a heading</h1>
-</BaseLayout>
-</div>
+  <Navbar />
+  <div class="flex w-screen">
+    <div class="bg-blue-500 h-remainfull w-1/2 relative left-0">
+      <BaseLayout title="eZone">MAP</BaseLayout>
+    </div>
+    <div class="relative right-0 h-remainfull w-1/2">
+      <div class="bg-yellow-500 h-remain">AQI</div>
+      <div class="bg-red-500 h-remain">VEGITATION</div>
+    </div>
+  </div>
 </html>
