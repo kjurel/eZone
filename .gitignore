@@ -1,5 +1,5 @@
 .env.local
-./src/pages/testing.astro
+# ./src/pages/testing.astro
 
 ##AStro
 # build output
