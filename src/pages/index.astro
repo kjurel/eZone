@@ -1,14 +1,16 @@
 ---
 import BaseLayout from "@components/BaseLayout.astro";
-import Navbar from "@components/Navbar.astro";
+import Vegitation from "@components/Vegitation.astro";
 ---
 
 <BaseLayout title="eZone">
   <div class="flex w-screen">
     <div id="map" class="bg-blue-500 h-remainfull w-remain relative left-0"></div>
-    <div class="relative right-0 h-remainfull w-1/2">
+    <div class="relative right-0 h-remainfull w-remain1">
       <div class="bg-yellow-500 h-remain">AQI</div>
-      <div class="bg-red-500 h-remain">VEGITATION</div>
+      <div class="bg-red-300 h-remain">
+        <Vegitation/>
+      </div>
     </div>
   </div>
 </BaseLayout>

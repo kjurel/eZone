@@ -11,8 +11,8 @@ module.exports = {
 				'remainfull': '93vh'
 			  },
 			  width: {
-				'remain': '83vw',
-				'remain1': '17vw'
+				'remain': '73vw',
+				'remain1': '27vw'
 			  }
 		},
 	},
