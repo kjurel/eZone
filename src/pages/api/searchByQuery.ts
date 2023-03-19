@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import * as schemas from "@schemas/AccuWeather";
+import * as schemas from "src/schemas/AccuWeather";
 
 function validator(data: unknown) {
   schemas.zod.array(schemas.searchByQueryData).parse(data);

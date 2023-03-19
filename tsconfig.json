@@ -6,6 +6,11 @@
       "@components/*": ["src/components/*"],
       "@api/*": ["src/pages/api/*"],
       "@schemas/*": ["src/schemas/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ]
   }
 }
