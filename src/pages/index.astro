@@ -5,11 +5,12 @@ import Vegitation from "@components/Vegitation.astro";
 
 <BaseLayout title="eZone">
   <div class="flex w-screen">
-    <div id="map" class="bg-blue-500 h-remainfull w-remain relative left-0"></div>
-    <div class="relative right-0 h-remainfull w-remain1">
+    <div id="map" class="bg-blue-500 h-remainfull w-remain relative left-0">
+    </div>
+    <div class="relative right-0 h-remainfull w-1/2">
       <div class="bg-yellow-500 h-remain">AQI</div>
       <div class="bg-red-300 h-remain">
-        <Vegitation/>
+        <Vegitation />
       </div>
     </div>
   </div>
@@ -22,10 +23,21 @@ import Vegitation from "@components/Vegitation.astro";
   crossorigin=""
 ></script>
 <script>
-  const map = L.map("map").setView([51.505, -0.09], 13);
-  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    maxZoom: 19,
-    attribution:
-      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  }).addTo(map);
+  // const map = L.map("map").setView([51.505, -0.09], 13);
+  // L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  //   maxZoom: 19,
+  //   attribution:
+  //     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  // }).addTo(map);
+  const map = L.map("map").setView([-41.2858, 174.78682], 14);
+  const mapLink = '<a href="http://www.esri.com/">Esri</a>';
+  const wholink =
+    "i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community";
+  L.tileLayer(
+    "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: "&copy; " + mapLink + ", " + wholink,
+      maxZoom: 18,
+    }
+  ).addTo(map);
 </script>
