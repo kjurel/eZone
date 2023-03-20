@@ -1,17 +1,17 @@
 ---
-import BaseLayout from "@components/BaseLayout.astro";
-import MapElement from "@components/MapElement/index.astro";
+import Layout from "@components/BootsrappLayout.astro";
+import MapElement from "@components/MapElement/MapElement.astro";
+import NavBar from "@components/NavBar/NavBar.astro";
 import Vegitation from "@components/Vegitation.astro";
+// this page is for editing and checking apis, not for production
 ---
 
-<BaseLayout title="eZone">
-  <div class="flex w-screen">
-    <MapElement />
-    <div class="relative right-0 h-remainfull w-1/2">
-      <div class="bg-yellow-500 h-remain">AQI</div>
-      <div class="bg-red-300 h-remain">
-<Vegitation />
-      </div>
-    </div>
-  </div>
-</BaseLayout>
+<Layout title="testing">
+  <NavBar />
+
+  <div class="container"></div>
+  <MapElement />
+  <!-- <div class="bg-red-300 h-remain">
+    <Vegitation />
+  </div> -->
+</Layout>

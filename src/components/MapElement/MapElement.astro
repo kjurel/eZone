@@ -48,7 +48,7 @@ export interface Props extends HTMLAttributes<"div"> {}
       maxZoom: 18,
     }
   );
-  const map = LL.map("map", { layers: [osmMap] }).setView([51.505, -0.09], 13);
+  const map = LL.map("map", { layers: [arcMap] }).setView([51.505, -0.09], 13);
   // LL.control.layers({ OSM: osmMap, ARC: arcMap }).addTo(map);
   LL.canvas();
   Location.listen((value) => {
@@ -61,20 +61,5 @@ export interface Props extends HTMLAttributes<"div"> {}
         lng: value.coordinates.longitude,
       });
     }
-    leafletImage(map, function (err: Error, canvas: HTMLCanvasElement) {
-      // now you have canvas
-      // example thing to do with that canvas:
-      var img = document.createElement("img");
-      var dimensions = map.getSize();
-      img.width = dimensions.x;
-      img.height = dimensions.y;
-      const ctx = canvas.getContext("2d");
-      console.log(
-        ctx?.createImageData(dimensions.x, dimensions.y)?.data?.length
-      );
-      // img.src = canvas.toDataURL();
-      // document.getElementById("images").innerHTML = "";
-      // document.getElementById("images").appendChild(img);
-    });
   });
 </script>
